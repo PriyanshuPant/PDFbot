@@ -16,6 +16,14 @@ def response(query: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get('/summary')
+def summary():
+    try:
+       return bot.summarize(pdf.large_chunks)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, log_level="info")

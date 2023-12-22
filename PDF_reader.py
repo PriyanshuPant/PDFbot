@@ -16,10 +16,10 @@ def get_pdf_text(pdf_path):
     return text, pages_dict
 
 
-def get_text_chunks(text):
+def get_text_chunks(text, chunk_size):
     text_splitter = CharacterTextSplitter(
         separator="\n",
-        chunk_size=1000,
+        chunk_size=chunk_size,
         chunk_overlap=200,
         length_function=len
     )
@@ -38,7 +38,8 @@ class PDF_reader:
 
     def __init__(self, pdf_path):
         self.raw_text, self.pages_dict = get_pdf_text(pdf_path)
-        self.text_chunks = get_text_chunks(self.raw_text)
+        self.text_chunks = get_text_chunks(self.raw_text, chunk_size=3000)
+        self.large_chunks = get_text_chunks(self.raw_text, chunk_size=14000)
         self.vectorstore = get_vectorstore(self.text_chunks)
 
     def get_relevant_chunks(self, query):
@@ -57,3 +58,5 @@ class PDF_reader:
                     page_no = key
 
         return first_chunk, page_no
+
+
