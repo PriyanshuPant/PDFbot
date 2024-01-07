@@ -10,7 +10,7 @@ from openai import OpenAIError
 
 from BOT import BOT
 from PDF_reader import PDF_reader
-from htmltempelates import BACKGROUND_TEMPLATE
+
 
 
 
@@ -92,23 +92,13 @@ if col2.button("Summary"):
         with answer_container:
             st.write(summary)
 
+   
 
 
 
-# if st.button("Ask"):
-#     if pdf is not None:
-#         chunk, page_no = pdf.get_relevant_chunks(user_question)
-#         response = bot.answer(user_question, chunk, page_no)[0]
-#         with answer_container:
-#             st.write(response)
 
 
-# if st.button("Summary"):
-#     if pdf is not None:
-#         chunks=pdf.get_relevant_chunks(user_question)
-#         summary = bot.summarize(chunks)
-#         with answer_container:
-#             st.write(summary)
+
         
    
 
