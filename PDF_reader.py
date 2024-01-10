@@ -38,7 +38,7 @@ class PDF_reader:
 
     def __init__(self, pdf_path):
         self.raw_text, self.pages_dict = get_pdf_text(pdf_path)
-        self.text_chunks = get_text_chunks(self.raw_text, chunk_size=3000)
+        self.text_chunks = get_text_chunks(self.raw_text, chunk_size=1000)
         self.large_chunks = get_text_chunks(self.raw_text, chunk_size=14000)
         self.vectorstore = get_vectorstore(self.text_chunks)
 

@@ -82,8 +82,9 @@ if col1.button("Ask"):
         chunk, page_no = pdf.get_relevant_chunks(user_question)
         response = bot.answer(user_question, chunk, page_no)[0]
         with answer_container:
-            st.write(response)
-            st.write(page_no)
+            st.markdown(f'<p style="color:#FFFFFF;font-size:14px;">{response}</p>', unsafe_allow_html=True)
+            if page_no != 'none':
+                st.markdown(f'<p style="color:#FFFFFF;font-size:14px;">Page {page_no}</p>', unsafe_allow_html=True)
 
 if col2.button("Summary"):
     if pdf is not None:
